@@ -29,15 +29,12 @@ import type { AppDispatch } from "@/lib/store";
 import { useDispatch } from "react-redux";
 import { logOut } from "@/lib/user/operation";
 import { useRouter } from "next/navigation";
-import { useSelector } from "react-redux";
-import { selectUserLoading } from "@/lib/user/selectors";
+import { selectUserLoading, selectUser } from "@/lib/user/selectors";
 import Loading from "@/components/Loading/Loading";
+import { useSelector } from "react-redux";
 import { User } from "@/lib/user/slice";
-export function NavUser({
-  user,
-}: {
-  user: User;
-}) {
+
+export function NavUser() {
   const { isMobile } = useSidebar();
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
@@ -47,6 +44,7 @@ export function NavUser({
   };
 
   const isLoading = useSelector(selectUserLoading);
+  const user = useSelector(selectUser);
 
   return (
     <SidebarMenu>
