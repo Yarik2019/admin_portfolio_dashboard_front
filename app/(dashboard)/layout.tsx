@@ -22,7 +22,8 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
     }
     userData();
   }, [dispatch]);
-
+  
+  if (!user) return null;
   return (
     <SidebarProvider>
       <AppSidebar user={user} />
