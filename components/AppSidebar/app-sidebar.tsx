@@ -28,7 +28,7 @@ interface AppSidebarUserProps {
   user: {
     name: string;
     email: string;
-    avatar: string;
+    // avatar: string;
   };
 }
 

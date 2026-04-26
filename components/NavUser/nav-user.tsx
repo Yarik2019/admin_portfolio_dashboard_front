@@ -30,7 +30,7 @@ import { useDispatch } from "react-redux";
 import { logOut } from "@/lib/user/operation";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
-import { selectUserLoading, selectUserError } from "@/lib/user/selectors";
+import { selectUserLoading } from "@/lib/user/selectors";
 import Loading from "@/components/Loading/Loading";
 
 export function NavUser({
@@ -39,7 +39,7 @@ export function NavUser({
   user: {
     name: string;
     email: string;
-    avatar: string;
+    // avatar: string;
   };
 }) {
   const { isMobile } = useSidebar();
@@ -65,7 +65,7 @@ export function NavUser({
              {!isLoading && (
                <>
                  <Avatar className="h-8 w-8 rounded-lg grayscale">
-                   <AvatarImage src={user?.avatar} alt={user?.name} />
+                   {/* <AvatarImage src={user?.avatar} alt={user?.name} /> */}
                    <AvatarFallback className="rounded-lg">
                      {user?.name?.charAt(0)}
                    </AvatarFallback>
@@ -91,7 +91,7 @@ export function NavUser({
               {!isLoading && (
                 <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                   <Avatar className="h-8 w-8 rounded-lg">
-                    <AvatarImage src={user?.avatar} alt={user?.name} />
+                    {/* <AvatarImage src={user?.avatar} alt={user?.name} /> */}
                     <AvatarFallback className="rounded-lg">
                       {user?.name?.charAt(0)}
                     </AvatarFallback>
