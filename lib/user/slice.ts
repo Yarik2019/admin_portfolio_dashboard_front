@@ -1,14 +1,14 @@
 import {createSlice, isAnyOf} from "@reduxjs/toolkit";
 
-import { signIn, signUp, logOut, getUserData, refreshAccessToken } from "./operation";
+import { signIn, signUp, logOut, getUserData } from "./operation";
 
 
 const initialState = {
     isLoggedIn: false,
     users: [],
     user: {
-        email: null,
-        name: null,
+        email: '',
+        name: '',
     },
     token: null,
     isRefreshing: false,
