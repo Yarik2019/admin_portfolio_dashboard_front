@@ -6,10 +6,7 @@ import { signIn, signUp, logOut, getUserData } from "./operation";
 const initialState = {
     isLoggedIn: false,
     users: [],
-    user: {
-        email: '',
-        name: '',
-    },
+    user: null as null | { email: string; name: string },
     token: null,
     isRefreshing: false,
     isAuthInitialized: false,
