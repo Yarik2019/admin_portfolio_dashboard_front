@@ -32,7 +32,7 @@ import { useRouter } from "next/navigation";
 import { selectUserLoading, selectUser } from "@/lib/user/selectors";
 import Loading from "@/components/Loading/Loading";
 import { useSelector } from "react-redux";
-import { User } from "@/lib/user/slice";
+// import { User } from "@/lib/user/slice";
 
 export function NavUser() {
   const { isMobile } = useSidebar();

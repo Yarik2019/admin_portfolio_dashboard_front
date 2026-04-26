@@ -49,28 +49,25 @@ export const createAboutData = createAsyncThunk<
 ////////////////////////////////////////////////////////
 export const updateAboutData = createAsyncThunk<
   AboutUpdatePayload,
-  { state: RootState }
->(
-  "about/updateAboutData",
-  async (
-    {
-      aboutId,
-      aboutData,
-    }: { aboutId: string; data: Partial<AboutUpdatePayload> },
-    thunkAPI,
-  ) => {
-    if (!aboutId) {
-      return thunkAPI.rejectWithValue("No ID provided");
-    }
-    try {
-      const { data } = await portfolioApi.patch(`/about/${aboutId}`, aboutData);
-      return data.data;
-    } catch (error) {
-      const message = error instanceof Error ? error.message : String(error);
-      return thunkAPI.rejectWithValue(message);
-    }
+  {
+    aboutId: string;
+    aboutData: Partial<AboutUpdatePayload>;
   },
-); ///////////////////////////////////////////////////////////////////
+  {
+    state: RootState;
+  }
+>("about/updateAboutData", async ({ aboutId, aboutData }, thunkAPI) => {
+  if (!aboutId) {
+    return thunkAPI.rejectWithValue("No ID provided");
+  }
+  try {
+    const { data } = await portfolioApi.patch(`/about/${aboutId}`, aboutData);
+    return data.data;
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    return thunkAPI.rejectWithValue(message);
+  }
+}); ///////////////////////////////////////////////////////////////////
 
 export const deleteAboutData = createAsyncThunk<{ id: string }, { id: string }>(
   "about/deleteAboutData",

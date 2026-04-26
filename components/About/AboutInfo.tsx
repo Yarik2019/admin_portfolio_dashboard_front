@@ -35,7 +35,7 @@ const AboutInfo = ({ _id, title, subTitle, description }: AboutInfoProps) => {
       subTitle: editSubTitle,
       description: editDescription,
     } as AboutInfoProps;
-    await dispatch(updateAboutData({aboutId: _id, aboutData}));
+    await dispatch(updateAboutData({aboutId: _id, aboutData} as {aboutId: string, aboutData: AboutInfoProps}));
     setIsEditing(false);
   };
   return (

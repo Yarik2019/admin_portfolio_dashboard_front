@@ -14,6 +14,7 @@ import AboutInfo from "@/components/About/AboutInfo";
 import AboutForm from "@/components/About/AboutForm";
 import Loading from "@/components/Loading/Loading";
 import { CardTitle } from "@/components/ui/card";
+import { AppDispatch } from "@/lib/store";
 
 interface AboutPageProps {
   _id: string;
@@ -23,7 +24,7 @@ interface AboutPageProps {
 }
 
 const AboutPage = () => {
-  const dispatch = useDispatch<any>();
+  const dispatch = useDispatch<AppDispatch>();
   const aboutItems = useSelector(
     selectAboutItems,
   ) as unknown as AboutPageProps[];
