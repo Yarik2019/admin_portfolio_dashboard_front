@@ -14,7 +14,7 @@ interface User {
   name: string;
 }
 const DashboardLayout = ({ children }: DashboardLayoutProps) => {
-  const user = useSelector(selectUser) as User | null;
+  const user = useSelector(selectUser) as User;
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
     const userData = () => {
@@ -22,7 +22,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
     }
     userData();
   }, [dispatch]);
-  
+
   if (!user) return null;
   return (
     <SidebarProvider>
