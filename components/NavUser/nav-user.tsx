@@ -32,15 +32,11 @@ import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 import { selectUserLoading } from "@/lib/user/selectors";
 import Loading from "@/components/Loading/Loading";
-
+import { User } from "@/lib/user/slice";
 export function NavUser({
   user,
 }: {
-  user: {
-    name: string;
-    email: string;
-    // avatar: string;
-  };
+  user: User;
 }) {
   const { isMobile } = useSidebar();
   const dispatch = useDispatch<AppDispatch>();

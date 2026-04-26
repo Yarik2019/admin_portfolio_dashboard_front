@@ -2,7 +2,7 @@ import {createSlice, isAnyOf} from "@reduxjs/toolkit";
 
 import { signIn, signUp, logOut, getUserData } from "./operation";
 
-interface User {
+export interface User {
     email: string;
     name: string;
 }

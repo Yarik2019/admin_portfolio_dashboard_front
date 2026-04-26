@@ -6,20 +6,18 @@ import { getUserData } from "@/lib/user/operation";
 import { selectUser } from "@/lib/user/selectors";
 import { useEffect } from "react";
 import { AppDispatch } from "@/lib/store";
+import { User } from "@/lib/user/slice";
 interface DashboardLayoutProps {
   children: React.ReactNode;
 }
-interface User {
-  email: string;
-  name: string;
-}
+
 const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   const user = useSelector(selectUser) as User;
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
     const userData = () => {
       dispatch(getUserData());
-    }
+    };
     userData();
   }, [dispatch]);
 

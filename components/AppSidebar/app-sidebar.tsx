@@ -6,10 +6,10 @@ import {
   IconHome,
   IconUsers,
   IconLayoutDashboard,
-  IconPick, 
+  IconPick,
   IconFileDescription,
   IconFileAi,
-  IconInnerShadowTop
+  IconInnerShadowTop,
 } from "@tabler/icons-react";
 
 import { NavMain } from "@/components/NavMain/nav-main";
@@ -23,15 +23,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-
-interface AppSidebarUserProps {
-  user: {
-    name: string;
-    email: string;
-    // avatar: string;
-  };
-}
-
+import { User } from "@/lib/user/slice";
 const data = {
   // user: {
   //   name:  user?.name || "User",
@@ -114,9 +106,16 @@ const data = {
     },
   ],
 };
+interface AppSidebarProps
+  extends React.ComponentProps<typeof Sidebar> {
+  user: User;
+}
 
-export function AppSidebar({ user, ...props }: AppSidebarUserProps & React.ComponentProps<typeof Sidebar>) {
-   
+export function AppSidebar({
+  user,
+  ...props
+}: AppSidebarProps) {
+  if (!user) return null;
   return (
     <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>
@@ -128,7 +127,9 @@ export function AppSidebar({ user, ...props }: AppSidebarUserProps & React.Compo
             >
               <a href="#">
                 <IconInnerShadowTop className="size-5!" />
-                <span className="text-base font-semibold">Admin Portfolio Dashboard</span>
+                <span className="text-base font-semibold">
+                  Admin Portfolio Dashboard
+                </span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>
