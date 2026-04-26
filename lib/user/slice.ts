@@ -2,11 +2,26 @@ import {createSlice, isAnyOf} from "@reduxjs/toolkit";
 
 import { signIn, signUp, logOut, getUserData } from "./operation";
 
+interface User {
+    email: string;
+    name: string;
+}
 
-const initialState = {
+interface UserState {
+  isLoggedIn: boolean;
+  users: any[];
+  user: User | null;
+  token: string | null;
+  isRefreshing: boolean;
+  isAuthInitialized: boolean;
+  error: boolean;
+  loading: boolean;
+}
+
+const initialState: UserState = {
     isLoggedIn: false,
     users: [],
-    user: null as null | { email: string; name: string },
+    user: null,
     token: null,
     isRefreshing: false,
     isAuthInitialized: false,
