@@ -22,7 +22,7 @@ const ContactInfo = ({ _id, name, icon, link }: ContactInfoProps) => {
   const [editedLink, setEditedLink] = useState<string>(link);
   const dispatch = useDispatch<AppDispatch>();
 
-  const handleDelete = async (id: string | number) => {
+  const handleDelete = async (id: string) => {
     await dispatch(deleteContactData({ _id: String(id) }));
   };
 

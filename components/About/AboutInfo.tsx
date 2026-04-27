@@ -108,7 +108,7 @@ const AboutInfo = ({ _id, title, subTitle, description }: AboutInfoProps) => {
           </Button>
         )}
         {isEditing && (
-          <Button variant="outline" onClick={() => handleEditSave()}>
+          <Button variant="outline" onClick={handleEditSave}>
             <IconFileWord />
           </Button>
         )}
