@@ -19,7 +19,10 @@ interface CardInfoProps {
   description: string;
   demoLink: string;
   codeLink: string;
-  image: string;
+  image?: {
+    url: string;
+    publicId?: string;
+  };
 }
 
 const CardInfo = ({

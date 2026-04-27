@@ -1,5 +1,4 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-
 import {
   createExperienceData,
   createExperienceDataCard,
@@ -10,9 +9,22 @@ import {
   updateExperienceDataCard,
 } from "./operactions";
 
+interface ExperienceCard {
+  _id: string;
+  title?: string;
+  description?: string;
+}
+
+interface ExperienceItem {
+  _id: string;
+  title: string;
+  description: string;
+  cards: ExperienceCard[];
+}
+
 interface ExperienceState {
   experienceTotal: number;
-  experienceItems: any[];
+  experienceItems: ExperienceItem[];
   loading: boolean;
   error: boolean;
 }
@@ -35,7 +47,7 @@ const experienceSlice = createSlice({
         state.experienceItems = action.payload;
       })
       .addCase(createExperienceData.fulfilled, (state, action) => {
-        state.experienceItems = [...state.experienceItems, action.payload];
+        state.experienceItems.push(action.payload);
       })
       .addCase(updateExperienceData.fulfilled, (state, action) => {
         state.experienceItems = state.experienceItems.map((item) =>
@@ -49,34 +61,43 @@ const experienceSlice = createSlice({
       })
       .addCase(createExperienceDataCard.fulfilled, (state, action) => {
         state.experienceItems = state.experienceItems.map((item) => {
-          return item._id === action.payload.experienceId
-            ? { ...item, cards: [...(item.cards || []), action.payload.card] }
-            : item;
+          if (item._id !== action.payload.experienceId) return item;
+
+          return {
+            ...item,
+            cards: [...item.cards, action.payload.card],
+          };
         });
-      }).addCase(updateExperienceDataCard.fulfilled, (state, action) => {
-        console.log("Experience data card updated:", action.payload);
-        state.experienceItems = state.experienceItems.map((item) =>
-          item._id === action.payload.experienceId
-            ? {
-                ...item,
-                cards: item.cards.map((card) =>
-                  card._id === action.payload.cardId ? action.payload.card : card,
-                ),
-              }
-            : item,
-        );
+      })
+      .addCase(updateExperienceDataCard.fulfilled, (state, action) => {
+        if (!action.payload) return;
+
+        const { experienceId, cardId, card } = action.payload;
+
+        state.experienceItems = state.experienceItems.map((item) => {
+          if (item._id !== experienceId) return item;
+
+          return {
+            ...item,
+            cards: item.cards.map((c) =>
+              c._id === cardId ? card : c,
+            ),
+          };
+        });
       })
       .addCase(deleteExperienceDataCard.fulfilled, (state, action) => {
-        state.experienceItems = state.experienceItems.map((item) =>
-          item._id === action.payload?.experienceId
-            ? {
-                ...item,
-                cards: item.cards.filter(
-                  (card) => card._id !== action.payload?.cardId,
-                ),
-              }
-            : item,
-        );
+        if (!action.payload) return;
+
+        const { experienceId, cardId } = action.payload;
+
+        state.experienceItems = state.experienceItems.map((item) => {
+          if (item._id !== experienceId) return item;
+
+          return {
+            ...item,
+            cards: item.cards.filter((c) => c._id !== cardId),
+          };
+        });
       })
       .addMatcher(
         isAnyOf(

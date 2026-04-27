@@ -1,7 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { portfolioApi } from "../service/configApi";
 
-interface HomeDataCreate {
+interface HomeDataCreateFormData {
+  formData: FormData;
+}
+
+interface CreateHome {
   title: string;
   description: string;
   link: string;
@@ -34,11 +38,11 @@ export const getHomeData = createAsyncThunk(
   },
 );
 
-export const createHomeData = createAsyncThunk<HomeDataCreate, HomeDataCreate>(
+export const createHomeData = createAsyncThunk<CreateHome, FormData>(
   "home/createHomeData",
-  async (body, thunkAPI) => {
+  async (formData, thunkAPI) => {
     try {
-      const { data } = await portfolioApi.post(`/home`, body);
+      const { data } = await portfolioApi.post(`/home`, formData);
       return data.data;
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);

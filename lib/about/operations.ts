@@ -8,14 +8,20 @@ interface AboutDataCreate {
   description: string;
 }
 
-export interface AboutItem {
-  aboutId: string;
+interface AboutItem {
+  _id: string;
   title: string;
   subTitle: string;
   description: string;
 }
 
-export interface AboutUpdatePayload {
+interface AboutUpdatePayload {
+  title?: string;
+  subTitle?: string;
+  description?: string;
+}
+
+interface AboutUpdateRequest {
   title?: string;
   subTitle?: string;
   description?: string;
@@ -48,10 +54,10 @@ export const createAboutData = createAsyncThunk<
 });
 ////////////////////////////////////////////////////////
 export const updateAboutData = createAsyncThunk<
-  AboutUpdatePayload,
+  AboutItem,
   {
     aboutId: string;
-    aboutData: Partial<AboutUpdatePayload>;
+    aboutData: AboutUpdateRequest;
   },
   {
     state: RootState;

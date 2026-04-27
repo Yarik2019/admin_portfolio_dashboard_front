@@ -4,9 +4,6 @@ import { portfolioApi } from "../service/configApi";
 interface CreatePortfolioItem {
   title: string;
   description: string;
-  demoLink: string;
-  codeLink: string;
-  image: File;
 }
 
 interface UpdatePortfolioItem {
@@ -115,13 +112,12 @@ export const updatePortfolioCardItem = createAsyncThunk(
     thunkAPI,
   ) => {
     try {
-      console.log({ portfolioId, cardId, formData });
       const { data } = await portfolioApi.patch(
         `/portfolio/${portfolioId}/card/${cardId}`,
         formData,
       );
 
-      return { portfolioId: portfolioId, cardId: cardId, card: data.data };
+      return { portfolioId: portfolioId, cardId: cardId, dataCard: data.data };
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
       return thunkAPI.rejectWithValue(message);

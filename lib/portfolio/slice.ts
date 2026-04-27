@@ -9,8 +9,23 @@ import {
   updatePortfolioCardItem,
 } from "../portfolio/operations";
 
+interface PortfolioCard {
+  _id: string;
+  title?: string;
+  description?: string;
+  demoLink?: string;
+  codeLink?: string;
+}
+
+interface PortfolioItem {
+  _id: string;
+  title: string;
+  description: string;
+  cards: PortfolioCard[];
+}
+
 interface PortfolioInitialState {
-  portfolioItems: any[];
+  portfolioItems: PortfolioItem[];
   portfolioTotal: number;
   loading: boolean;
   error: boolean;

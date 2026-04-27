@@ -17,7 +17,7 @@ export const getExperienceData = createAsyncThunk(
       return data.data;
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
-      thunkAPI.rejectWithValue(message);
+      return thunkAPI.rejectWithValue(message);
     }
   },
 );
@@ -30,7 +30,7 @@ export const createExperienceData = createAsyncThunk(
       return data.data;
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
-      thunkAPI.rejectWithValue(message);
+      return thunkAPI.rejectWithValue(message);
     }
   },
 );
@@ -52,7 +52,7 @@ export const updateExperienceData = createAsyncThunk(
       return data.data;
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
-      thunkAPI.rejectWithValue(message);
+      return thunkAPI.rejectWithValue(message);
     }
   },
 );
@@ -65,7 +65,7 @@ export const deleteExperienceData = createAsyncThunk(
       return id;
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
-      thunkAPI.rejectWithValue(message);
+      return thunkAPI.rejectWithValue(message);
     }
   },
 );
@@ -84,7 +84,7 @@ export const createExperienceDataCard = createAsyncThunk(
       return data.data;
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
-      thunkAPI.rejectWithValue(message);
+      return thunkAPI.rejectWithValue(message);
     }
   },
 );
@@ -107,7 +107,7 @@ export const updateExperienceDataCard = createAsyncThunk(
       return { experienceId, cardId, card: data.data };
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
-      thunkAPI.rejectWithValue(message);
+      return thunkAPI.rejectWithValue(message);
     }
   },
 );
@@ -122,7 +122,7 @@ export const deleteExperienceDataCard = createAsyncThunk(
       return { experienceId: body.experienceId, cardId: body.cardId };
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
-      thunkAPI.rejectWithValue(message);
+      return thunkAPI.rejectWithValue(message);
     }
   },
 );

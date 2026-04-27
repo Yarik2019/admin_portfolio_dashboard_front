@@ -13,13 +13,17 @@ import Loading from "@/components/Loading/Loading";
 import { CardTitle } from "@/components/ui/card";
 import ExperienceInfo from "@/components/Experience/ExperienceInfo";
 import ExperienceForm from "@/components/Experience/ExperienceForm";
+import { AppDispatch } from "@/lib/store";
 
 interface ExperienceCard {
   _id: string;
   title: string;
   name: string;
   styles: string;
-  image: string;
+  image?: {
+    url: string;
+    publicId?: string;
+  };
 }
 
 interface ExperiencePageProps {
@@ -30,7 +34,7 @@ interface ExperiencePageProps {
 }
 
 const ExperiencePage = () => {
-  const dispatch = useDispatch<any>();
+  const dispatch = useDispatch<AppDispatch>();
   const experienceData = useSelector(
     selectExperienceItems,
   ) as ExperiencePageProps[];

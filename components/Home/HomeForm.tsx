@@ -12,7 +12,7 @@ interface CreateHomeData {
   title: string;
   description: string;
   link: string;
-  image: File | null;
+  image: File;
 }
 
 const HomeForm = () => {
@@ -29,7 +29,7 @@ const HomeForm = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = new FormData();
+    const formData: FormData = new FormData();
     formData.append("title", title);
     formData.append("description", description);
     formData.append("link", link);

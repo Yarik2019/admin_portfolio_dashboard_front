@@ -4,7 +4,10 @@ import { Card, CardFooter, CardHeader } from "../ui/card";
 import { Field, FieldGroup, FieldLabel } from "../ui/field";
 import { Input } from "../ui/input";
 import { IconEdit, IconFileWord, IconTrash } from "@tabler/icons-react";
-import { deletePortfolioItem, updatePortfolioItem } from "@/lib/portfolio/operations";
+import {
+  deletePortfolioItem,
+  updatePortfolioItem,
+} from "@/lib/portfolio/operations";
 import { useDispatch } from "react-redux";
 import type { AppDispatch } from "@/lib/store";
 import CardInfo from "./CardInfo";
@@ -16,7 +19,10 @@ interface CardProps {
   description: string;
   demoLink: string;
   codeLink: string;
-  image: string;
+  image?: {
+    url: string;
+    publicId?: string;
+  };
 }
 
 interface PortfolioInfoProps {
@@ -40,9 +46,9 @@ const PortfolioInfo = ({
   const handleEdit = () => {
     setEditing(!isEditing);
   };
-  const handleEditSave = (portfolioId) => {
+  const handleEditSave = ({ portfolioId }: { portfolioId: string }) => {
     const data = { title: titleValue, description: descriptionValue };
-    dispatch(updatePortfolioItem({ portfolioId, portfolioData: data}));
+    dispatch(updatePortfolioItem({ portfolioId, portfolioData: data }));
     setEditing(false);
   };
   const handleDelete = (id: string) => {
@@ -100,7 +106,7 @@ const PortfolioInfo = ({
             </Button>
           )}
           {isEditing && (
-            <Button variant="outline" onClick={() => handleEditSave(_id)}>
+            <Button variant="outline" onClick={() => handleEditSave({ portfolioId: _id })}>
               <IconFileWord />
             </Button>
           )}
