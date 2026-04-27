@@ -16,6 +16,11 @@ interface HomeDataUpdate {
   image: File;
 }
 
+interface UpdateHomePayload {
+  homeId: string;
+  formData: FormData;
+}
+
 export const getHomeData = createAsyncThunk(
   "home/gethomeData",
   async (_arg, thunkAPI) => {
@@ -42,10 +47,10 @@ export const createHomeData = createAsyncThunk<HomeDataCreate, HomeDataCreate>(
   },
 );
 
-export const updateHomeData = createAsyncThunk<HomeDataUpdate, HomeDataUpdate>(
+export const updateHomeData = createAsyncThunk<HomeDataUpdate, UpdateHomePayload>(
   "home/updateHomeData",
   async (
-    { homeId, formData }: { homeId: string; formData: FormData },
+    { homeId, formData },
     thunkAPI,
   ) => {
     try {

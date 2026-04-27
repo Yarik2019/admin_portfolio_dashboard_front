@@ -7,13 +7,18 @@ import { useState } from "react";
 import { AppDispatch } from "@/lib/store";
 import { createExperienceData } from "@/lib/experience/operactions";
 
+ interface ExperienceData {
+  title: string;
+  description: string;
+ }
+
 const ExperienceForm = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const dispatch = useDispatch<AppDispatch>();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const data = { title, description };
+    const data: ExperienceData = { title, description };
     dispatch(createExperienceData(data));
   };
   return (

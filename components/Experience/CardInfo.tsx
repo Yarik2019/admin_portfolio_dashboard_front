@@ -15,7 +15,10 @@ interface CardInfoProps {
   title: string;
   name: string;
   styles: string;
-  image: string;
+  image?: {
+    url: string;
+    publicId?: string;
+  };
 }
 
 const CardInfo = ({

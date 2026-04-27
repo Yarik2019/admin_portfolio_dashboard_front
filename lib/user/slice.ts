@@ -9,7 +9,7 @@ export interface User {
 
 interface UserState {
   isLoggedIn: boolean;
-  users: any[];
+  users: User[];
   user: User | null;
   token: string | null;
   isRefreshing: boolean;

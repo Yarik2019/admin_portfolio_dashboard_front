@@ -3,9 +3,7 @@ import { portfolioApi } from "../service/configApi";
 
 interface CreateExperienceData {
   title: string;
-  name: string;
-  styles: string;
-  image: File;
+  description: string;
 }
 interface UpdateExperienceData {
   title: string;
@@ -102,8 +100,11 @@ export const updateExperienceDataCard = createAsyncThunk(
     thunkAPI,
   ) => {
     try {
-      const {data} = await portfolioApi.patch(`/experience/${experienceId}/cards/${cardId}`, formData);
-      return {experienceId, cardId, card: data.data};
+      const { data } = await portfolioApi.patch(
+        `/experience/${experienceId}/cards/${cardId}`,
+        formData,
+      );
+      return { experienceId, cardId, card: data.data };
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
       thunkAPI.rejectWithValue(message);

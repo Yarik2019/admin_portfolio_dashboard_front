@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/lib/store";
 
 interface ContactInfoProps {
-  _id: string | number;
+  _id: string;
   name: string;
   icon: React.ReactNode;
   link: string;

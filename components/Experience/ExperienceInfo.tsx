@@ -15,7 +15,10 @@ interface CardProps {
   title: string;
   name: string;
   styles: string;
-  image: string;
+  image?: {
+    url: string;
+    publicId?: string;
+  };
 }
 
 interface ExperienceInfoProps {

@@ -10,7 +10,7 @@ import { deleteHomeData, updateHomeData } from "@/lib/home/operations";
 import { AppDispatch } from "@/lib/store";
 
 interface HomeDataInfo {
-  _id: string | number;
+  _id: string;
   title: string;
   description: string;
   link: string;
