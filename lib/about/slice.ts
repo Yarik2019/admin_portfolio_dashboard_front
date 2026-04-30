@@ -28,7 +28,6 @@ const aboutSlice = createSlice({
         state.aboutItems = [...state.aboutItems, action.payload];
       })
       .addCase(updateAboutData.fulfilled, (state, action) => {
-        console.log("About item updated:", action.payload);
         state.aboutItems = state.aboutItems.map((item) =>
           item._id === action.payload._id ? action.payload : item,
         );

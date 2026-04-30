@@ -102,12 +102,12 @@ const HomeInfo = (item: HomeDataInfo) => {
             )}
           </Field>
           <div className="w-full max-w-lg mb-6">
-            <AspectRatio ratio={16 / 9} className="rounded-lg bg-muted">
+            <AspectRatio ratio={16 / 9} className="flex justify-center items-center rounded-lg bg-muted">
               {image?.url && (
                 <img
                   src={image?.url}
                   alt="Photo"
-                  className="w-full rounded-lg object-cover  dark:brightness-20"
+                  className="w-auto h-full rounded-lg object-cover  dark:brightness-20"
                 />
               )}
             </AspectRatio>

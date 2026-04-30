@@ -7,13 +7,18 @@ import { useState } from "react";
 import { AppDispatch } from "@/lib/store";
 import { createPortfolioItem } from "@/lib/portfolio/operations";
 
+interface PortfolioFormData {
+  title: string;
+  description: string;
+}
+
 const PortfolioForm = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const dispatch = useDispatch<AppDispatch>();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const data = { title, description };
+    const data: PortfolioFormData = { title, description };
     dispatch(createPortfolioItem(data));
   };
   return (

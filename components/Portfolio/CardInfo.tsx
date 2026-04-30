@@ -155,7 +155,7 @@ const CardInfo = ({
                 <img
                   src={image?.url}
                   alt="Photo"
-                  className="w-full rounded-lg object-cover dark:brightness-20"
+                  className="w-full h-full rounded-lg object-cover dark:brightness-20"
                 />
               )}
             </AspectRatio>

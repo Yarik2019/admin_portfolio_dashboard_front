@@ -124,12 +124,12 @@ const CardInfo = ({
           </Field>
 
           <div className="w-full mb-6">
-            <AspectRatio ratio={16 / 9} className="w-full rounded-lg bg-muted">
+            <AspectRatio ratio={16 / 9} className="w-full flex justify-center items-center rounded-lg bg-muted">
               {image?.url && (
                 <img
                   src={image?.url}
                   alt="Photo"
-                  className="w-full rounded-lg object-cover dark:brightness-20"
+                  className="w-auto h-full rounded-lg object-cover dark:brightness-20"
                 />
               )}
             </AspectRatio>
