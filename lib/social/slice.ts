@@ -1,9 +1,9 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import {
-  getContactData,
-  createContactData,
-  updateContactData,
-  deleteContactData,
+  getSocialData,
+  createSocialData,
+  updateSocialData,
+  deleteSocialData,
 } from "./operations";
 
 interface SocialInitialState {
@@ -26,29 +26,29 @@ const socialSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getContactData.fulfilled, (state, action) => {
+      .addCase(getSocialData.fulfilled, (state, action) => {
         state.totalSocial = action.payload.length;
         state.socialItems = action.payload;
       })
-      .addCase(createContactData.fulfilled, (state, action) => {
+      .addCase(createSocialData.fulfilled, (state, action) => {
         state.socialItems = [...state.socialItems, action.payload];
       })
-      .addCase(updateContactData.fulfilled, (state, action) => {
+      .addCase(updateSocialData.fulfilled, (state, action) => {
         state.socialItems = state.socialItems.map((item) =>
           item._id === action.payload._id ? action.payload : item,
         );
       })
-      .addCase(deleteContactData.fulfilled, (state, action) => {
+      .addCase(deleteSocialData.fulfilled, (state, action) => {
         state.socialItems = state.socialItems.filter(
           (item) => item._id !== action.payload,
         );
       })
       .addMatcher(
         isAnyOf(
-          getContactData.pending,
-          createContactData.pending,
-          updateContactData.pending,
-          deleteContactData.pending,
+          getSocialData.pending,
+          createSocialData.pending,
+          updateSocialData.pending,
+          deleteSocialData.pending,
         ),
         (state) => {
           state.loading = true;
@@ -57,10 +57,10 @@ const socialSlice = createSlice({
       )
       .addMatcher(
         isAnyOf(
-          getContactData.fulfilled,
-          createContactData.fulfilled,
-          updateContactData.fulfilled,
-          deleteContactData.fulfilled,
+          getSocialData.fulfilled,
+          createSocialData.fulfilled,
+          updateSocialData.fulfilled,
+          deleteSocialData.fulfilled,
         ),
         (state) => {
           state.loading = false;
@@ -69,10 +69,10 @@ const socialSlice = createSlice({
       )
       .addMatcher(
         isAnyOf(
-          getContactData.rejected,
-          createContactData.rejected,
-          updateContactData.rejected,
-          deleteContactData.rejected,
+          getSocialData.rejected,
+          createSocialData.rejected,
+          updateSocialData.rejected,
+          deleteSocialData.rejected,
         ),
         (state) => {
           state.error = true;
