@@ -42,8 +42,8 @@ const data = {
       icon: IconLayoutDashboard,
     },
     {
-      title: "Contact",
-      url: "/contact",
+      title: "Social",
+      url: "/social",
       icon: IconUsers,
     },
     {
