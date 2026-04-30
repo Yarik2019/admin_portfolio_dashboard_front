@@ -4,7 +4,7 @@ import { Field, FieldGroup, FieldLabel } from "../ui/field";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { IconEdit, IconFileWord, IconTrash } from "@tabler/icons-react";
-import { deleteContactData, updateContactData } from "@/lib/contact/operations";
+import { deleteSocialData, updateSocialData } from "@/lib/social/operations";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/lib/store";
 
@@ -15,7 +15,7 @@ interface ContactInfoProps {
   link: string;
 }
 
-const ContactInfo = ({ _id, name, icon, link }: ContactInfoProps) => {
+const SocialInfo = ({ _id, name, icon, link }: ContactInfoProps) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedName, setEditedName] = useState<string>(name);
   const [editedIcon, setEditedIcon] = useState<string>(String(icon ?? ""));
@@ -23,7 +23,7 @@ const ContactInfo = ({ _id, name, icon, link }: ContactInfoProps) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const handleDelete = async (id: string) => {
-    await dispatch(deleteContactData({ _id: String(id) }));
+    await dispatch(deleteSocialData({ _id: String(id) }));
   };
 
   const handleEdit = () => {
@@ -37,7 +37,7 @@ const ContactInfo = ({ _id, name, icon, link }: ContactInfoProps) => {
       icon: editedIcon,
       link: editedLink,
     };
-    dispatch(updateContactData({ contactId: _id, contactData: data }));
+    dispatch(updateSocialData({ socialId: _id, socialData: data }));
     setIsEditing(false);
   };
 
@@ -111,4 +111,4 @@ const ContactInfo = ({ _id, name, icon, link }: ContactInfoProps) => {
   );
 };
 
-export default ContactInfo;
+export default SocialInfo;

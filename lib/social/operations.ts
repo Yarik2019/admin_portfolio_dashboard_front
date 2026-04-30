@@ -1,17 +1,17 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { portfolioApi } from "../service/configApi";
 
-interface ContactDataCreate {
+interface SocialDataCreate {
   name: string;
   icon: string;
   link: string;
 }
 
-export const getContactData = createAsyncThunk(
-  "contact/getContactData",
+export const getSocialData = createAsyncThunk(
+  "social/getSocialData",
   async (_arg, thunkAPI) => {
     try {
-      const { data } = await portfolioApi.get(`/contact`);
+      const { data } = await portfolioApi.get(`/social`);
       return data.data;
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
@@ -20,11 +20,11 @@ export const getContactData = createAsyncThunk(
   },
 );
 
-export const createContactData = createAsyncThunk(
-  "contact/createContactData",
-  async (body: ContactDataCreate, thunkAPI) => {
+export const createSocialData = createAsyncThunk(
+  "social/createSocialData",
+  async (body: SocialDataCreate, thunkAPI) => {
     try {
-      const { data } = await portfolioApi.post(`/contact`, body);
+      const { data } = await portfolioApi.post(`/social`, body);
       return data.data;
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
@@ -33,11 +33,11 @@ export const createContactData = createAsyncThunk(
   },
 );
 
-export const updateContactData = createAsyncThunk(
-  "contact/updateContactData",
-  async ({ contactId, contactData }: { contactId: string; contactData: Partial<ContactDataCreate> }, thunkAPI) => {
+export const updateSocialData = createAsyncThunk(
+  "social/updateSocialData",
+  async ({ socialId, socialData }: { socialId: string; socialData: Partial<SocialDataCreate> }, thunkAPI) => {
     try {
-      const { data } = await portfolioApi.patch(`/contact/${contactId}`, contactData);
+      const { data } = await portfolioApi.patch(`/social/${socialId}`, socialData);
       return data.data;
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
@@ -46,11 +46,11 @@ export const updateContactData = createAsyncThunk(
   },
 );
 
-export const deleteContactData = createAsyncThunk(
-  "contact/deleteContactData",
+export const deleteSocialData = createAsyncThunk(
+  "social/deleteSocialData",
   async ({ _id }: { _id: string }, thunkAPI) => {
     try {
-      await portfolioApi.delete(`/contact/${_id}`);
+      await portfolioApi.delete(`/social/${_id}`);
       return _id;
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);

@@ -2,15 +2,15 @@
 
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getContactData } from "@/lib/contact/operations";
+import { getSocialData } from "@/lib/social/operations";
 import {
-  selectContactItems,
-  selectContactLoading,
-  selectContactError,
-} from "@/lib/contact/selectors";
+  selectSocialItems,
+  selectSocialLoading,
+  selectSocialError,
+} from "@/lib/social/selectors";
 import { PrivateRoute } from "@/components/PrivateRoute/PrivateRoute";
-import ContactInfo from "@/components/Contact/ContactInfo";
-import ContactForm from "@/components/Contact/ContactForm";
+import SocialInfo from "@/components/Social/SocialInfo";
+import SocialForm from "@/components/Social/SocialForm";
 import { AppDispatch } from "@/lib/store";
 import { CardTitle } from "@/components/ui/card";
 import Loading from "@/components/Loading/Loading";
@@ -20,16 +20,16 @@ interface ContactItem {
   icon: string;
   link: string;
 }
-const ContactPage = () => {
+const SocialPage = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const contactData = useSelector(selectContactItems) as ContactItem[];
-  const isLoading = useSelector(selectContactLoading);
-  const Error = useSelector(selectContactError);
+  const socialData = useSelector(selectSocialItems) as ContactItem[];
+  const isLoading = useSelector(selectSocialLoading);
+  const Error = useSelector(selectSocialError);
   // const [showForm, setShowForm] = useState<boolean>(false);
 
   useEffect(() => {
     const loadData = async () => {
-      await dispatch(getContactData());
+      await dispatch(getSocialData());
     };
     loadData();
   }, [dispatch]);
@@ -49,15 +49,15 @@ const ContactPage = () => {
       {Error && <p>Error: {Error}</p>}
       {!isLoading && !Error && (
         <div className="flex flex-col gap-3">
-          {contactData.map((item) => (
-            <ContactInfo key={item._id} {...item} />
+          {socialData.map((item) => (
+            <SocialInfo key={item._id} {...item} />
           ))}
 
-          <ContactForm />
+          <SocialForm />
         </div>
       )}
     </PrivateRoute>
   );
 };
 
-export default ContactPage;
+export default SocialPage;

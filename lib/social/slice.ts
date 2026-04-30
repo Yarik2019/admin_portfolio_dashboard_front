@@ -6,40 +6,40 @@ import {
   deleteContactData,
 } from "./operations";
 
-interface ContactInitialState {
-  totalContact: number;
-  contactItems: any[];
+interface SocialInitialState {
+  totalSocial: number;
+  socialItems: any[];
   loading: boolean;
   error: boolean;
 }
 
-const initialState: ContactInitialState = {
-  totalContact: 0,
-  contactItems: [],
+const initialState: SocialInitialState = {
+  totalSocial: 0,
+  socialItems: [],
   loading: false,
   error: false,
 };
 
-const contactSlice = createSlice({
-  name: "contact",
+const socialSlice = createSlice({
+  name: "social",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(getContactData.fulfilled, (state, action) => {
-        state.totalContact = action.payload.length;
-        state.contactItems = action.payload;
+        state.totalSocial = action.payload.length;
+        state.socialItems = action.payload;
       })
       .addCase(createContactData.fulfilled, (state, action) => {
-        state.contactItems = [...state.contactItems, action.payload];
+        state.socialItems = [...state.socialItems, action.payload];
       })
       .addCase(updateContactData.fulfilled, (state, action) => {
-        state.contactItems = state.contactItems.map((item) =>
+        state.socialItems = state.socialItems.map((item) =>
           item._id === action.payload._id ? action.payload : item,
         );
       })
       .addCase(deleteContactData.fulfilled, (state, action) => {
-        state.contactItems = state.contactItems.filter(
+        state.socialItems = state.socialItems.filter(
           (item) => item._id !== action.payload,
         );
       })
@@ -82,4 +82,4 @@ const contactSlice = createSlice({
   },
 });
 
-export const contactReducer = contactSlice.reducer;
+export const socialReducer = socialSlice.reducer;

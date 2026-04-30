@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createContactData } from "@/lib/contact/operations";
+import { createSocialData } from "@/lib/social/operations";
 import { Card, CardFooter, CardHeader } from "../ui/card";
 import { FieldGroup, Field, FieldLabel } from "../ui/field";
 import { Input } from "../ui/input";
@@ -7,7 +7,7 @@ import { Button } from "../ui/button";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/lib/store";
 
-const ContactForm = () => {
+const SocialForm = () => {
   const [name, setName] = useState("");
   const [icon, setIcon] = useState("");
   const [link, setLink] = useState("");
@@ -16,8 +16,8 @@ const ContactForm = () => {
 
   const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const contactData = { name, icon, link };
-    await dispatch(createContactData(contactData));
+    const socialData = { name, icon, link };
+    await dispatch(createSocialData(socialData));
     setName("");
     setIcon("");
     setLink("");
@@ -70,4 +70,4 @@ const ContactForm = () => {
   );
 };
 
-export default ContactForm;
+export default SocialForm;
